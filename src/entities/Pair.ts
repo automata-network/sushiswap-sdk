@@ -17,9 +17,9 @@ export class Pair {
   public readonly liquidityToken: Token
   private readonly tokenAmounts: [CurrencyAmount<Token>, CurrencyAmount<Token>]
 
-  public static getAddress(tokenA: Token, tokenB: Token, isConveyorPair: boolean = false): string {
+  public static getAddress(tokenA: Token, tokenB: Token, isConveyorPair: boolean = false, conveyorEnvIsProduction: boolean|undefined = undefined): string {
     const exchanger = !isConveyorPair ? Exchanger.SUSHI : Exchanger.CONVEYOR
-    const factoryAddress = factoryAddressOf(tokenA.chainId, exchanger)
+    const factoryAddress = factoryAddressOf(tokenA.chainId, exchanger, conveyorEnvIsProduction)
     return computePairAddress({
       factoryAddress,
       tokenA,
