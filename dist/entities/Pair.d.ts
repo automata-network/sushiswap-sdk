@@ -6,7 +6,7 @@ export declare class Pair {
     readonly liquidityToken: Token;
     private readonly tokenAmounts;
     static getAddress(tokenA: Token, tokenB: Token, isConveyorPair?: boolean, conveyorEnvIsProduction?: boolean | undefined): string;
-    constructor(currencyAmountA: CurrencyAmount<Token>, currencyAmountB: CurrencyAmount<Token>, isConveyorPair?: boolean);
+    constructor(currencyAmountA: CurrencyAmount<Token>, currencyAmountB: CurrencyAmount<Token>, isConveyorPair?: boolean, conveyorEnvIsProduction?: boolean | undefined);
     /**
      * Returns true if the token is either token0 or token1
      * @param token to check

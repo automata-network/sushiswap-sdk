@@ -1402,9 +1402,13 @@ function sqrt(value) {
 }
 
 var Pair = /*#__PURE__*/function () {
-  function Pair(currencyAmountA, currencyAmountB, isConveyorPair) {
+  function Pair(currencyAmountA, currencyAmountB, isConveyorPair, conveyorEnvIsProduction) {
     if (isConveyorPair === void 0) {
       isConveyorPair = false;
+    }
+
+    if (conveyorEnvIsProduction === void 0) {
+      conveyorEnvIsProduction = undefined;
     }
 
     var currencyAmounts = currencyAmountA.currency.sortsBefore(currencyAmountB.currency) // does safety checks
@@ -1414,7 +1418,7 @@ var Pair = /*#__PURE__*/function () {
         tokenSymbol = _tokenIdentityOf[0],
         tokenName = _tokenIdentityOf[1];
 
-    this.liquidityToken = new Token(currencyAmounts[0].currency.chainId, Pair.getAddress(currencyAmounts[0].currency, currencyAmounts[1].currency, isConveyorPair), 18, // 'UNI-V2',
+    this.liquidityToken = new Token(currencyAmounts[0].currency.chainId, Pair.getAddress(currencyAmounts[0].currency, currencyAmounts[1].currency, isConveyorPair, conveyorEnvIsProduction), 18, // 'UNI-V2',
     // 'Uniswap V2'
     tokenSymbol, tokenName);
     this.tokenAmounts = currencyAmounts;
